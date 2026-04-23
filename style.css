@@ -6,7 +6,7 @@ body {
   align-items: center;
   height: 100vh;
   justify-content: center;
-  background: url("https://images.unsplash.com/photo-1499002238440-d264edd596ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+  background: url("clock.png  ");
   background-size: cover;
   overflow: hidden;
 }
@@ -31,9 +31,9 @@ h2 {
 .clock span {
   width: 100px;
   height: 80px;
-  background: slateblue;
+  background: #88718CFF;
   opacity: 0.8;
-  color: white;
+  color: #16151BFF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +46,7 @@ h2 {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background: darkblue;
+  background: #5E4755FF;
   opacity: 0.8;
 }
 
@@ -56,5 +56,5 @@ h2 {
   width: 60px;
   height: 30px;
   font-size: 20px;
-  background: green;
+  background: #858391FF;
 }
