@@ -28,26 +28,35 @@ function updateClock() {
 }
 
 const pointer = document.getElementById('pointer');
+let targetAngle = 0;
+let currentAngle = 0;
+let isInitialized = false;
 
-window.addEventListener('mousemove', (e) => {
-  // 1. Get the bounding box of the element
+// Smooth animation loop
+function animatePointer() {
+  // Keep rotation continuous across the -180/180 boundary
+  const delta = ((targetAngle - currentAngle + 540) % 360) - 180;
+  currentAngle += delta * 0.22; // increase for snappier movement
+
+  pointer.style.transform = `rotate(${currentAngle}deg)`;
+  requestAnimationFrame(animatePointer);
+}
+
+window.addEventListener("mousemove", (e) => {
   const rect = pointer.getBoundingClientRect();
-  
-  // 2. Find the center point of the element
-  const elementCenterX = rect.left + rect.width / 2;
-  const elementCenterY = rect.top + rect.height / 2;
 
-  // 3. Calculate distance between mouse and element center
-  const deltaX = e.clientX - elementCenterX;
-  const deltaY = e.clientY - elementCenterY;
+  // Use true center of the element
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
 
-  // 4. Calculate angle in radians and convert to degrees
-  const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+  targetAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
 
-  // 5. Apply the rotation
-  pointer.style.transform = `rotate(${angle}deg)`;
+  if (!isInitialized) {
+    currentAngle = targetAngle;
+    isInitialized = true;
+  }
 });
 
-
+animatePointer();
 updateClock();
 
